@@ -1,10 +1,13 @@
-\documentclass[10pt]{article}
+\documentclass[15pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 \usepackage{float}
 \usepackage{amsmath}
-\usepackage[margin=0.6in]{geometry}
+\usepackage[margin=0.7in]{geometry}
 \usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
 
 \begin{document}
 {\centering
@@ -13,6 +16,28 @@
 \maketitle}
 
 \section{Wstęp}
+Analizowany zbiór danych przedstawia strukturę ludności według wieku oraz poziomu wykształcenia. Dane zostały zestawione dla dwóch okresów oddalonych od siebie o 33 lata (1978--2011), dzięki czemu możliwe jest prześledzenie zmian w poziomie edukacji społeczeństwa. W tabelach wyróżniono grupy wieku oraz poziomy wykształcenia, m.in. wyższe, średnie oraz podstawowe.
+
+\subsection{Źródło danych}
+
+Źródłem danych jest Główny Urząd Statystyczny (GUS), \textit{Ludność według poziomu wykształcenia 1921--2011}.
+
+\begin{flushleft}
+	\texttt{https://dane.gov.pl/pl/dataset/1572,ludnosc-wedug-poziomu-wyksztacenia-1921-2011/resource/17481/table}
+\end{flushleft}
+
+\subsection{Cel analizy}
+
+Celem analizy jest porównanie powszechności edukacji dawniej i obecnie, czyli określenie, jak zmienił się poziom wykształcenia społeczeństwa na przestrzeni 33 lat. W szczególności analiza ma odpowiedzieć na następujące pytania:
+
+\begin{itemize}
+	\item Czy wzrósł udział osób z wykształceniem średnim i wyższym?
+	\item Jaki jest przeciętny wiek osoby z wykształceniem podstawowym, średnim oraz wyższym?
+	\item Jak zmiany poziomu wykształcenia kształtują się w różnych grupach wiekowych?
+	\item Czy edukacja stała się bardziej powszechna i dostępna niż w przeszłości?
+\end{itemize}
+
+Przeprowadzenie takiej analizy pozwoli ocenić skalę przemian edukacyjnych w społeczeństwie oraz pokazać, jak bardzo wzrosło znaczenie wykształcenia w ciągu ostatnich dekad.
 
 \section{Analiza rozkładu przy pomocy metryk statystycznych}
 
@@ -22,15 +47,56 @@
 \[
 \bar{x} = \frac{x_{1}n_{1} + x_{2}n_{2} + ... + x_{k}n_{k}}{n_{1} + n_{2} + ... + n_{k}} 
 \]
-
+Dla danych z 1978 roku średnie wieku dla poszczególnego poziomu wykształcenia:
+$\\$
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$\bar{x}$ & 37.303 & 34.125 & 44.995 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dla danych z 2011 roku średnie wieku dla poszczególnego poziomu wykształcenia:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$\bar{x}$ & 40.828 & 43.892 & 57.713 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Z tych danych można zauważyć że w 2011 roku średnie wieku we wszystkich grupach się zwiększyły w porównaniu do starszych danych, co może sugerować starzenie się społęczeństwa jak i podnoszenie ogólnego poziomu wykształcenia.
 \subsection{Średnia ucinana liczności}
 
 \paragraph{Wzór ogólny}
 \[
 \bar{x} = \frac{x_{i}n_{i} + x_{i+1}n_{i+1} + ... + x_{k-i}n_{k-i}}{n_{i} + n_{i+1} + ... + n_{k-i}} 
 \]
-
-
+Dla danych z 1978 roku:
+$\\$
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$\bar{x}$ & 35.774 & 32.423 & 40.845 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dla danych z 2011 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$\bar{x}$ & 40.914 & 42.892 & 59.060 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+W obu przypadkach z danych zostały ucięte wiek minimalny = 15 lat i wiek maksymalny dla 1978 = 65+ i dla 2011 = 85+, gdyż dane powyżej tych wieków został skumulowane do tej jednej wartości. Jak widać w tabeli pierwszej średnie się zmniejszyły co sugeruje dużą kumulacje danych dla wieku powyżej 65 lat, natomiast w tabeli drugiej nastąpił wzrost średnich wieku dla wykształcenia wyższego i podstawowego. Z tego wynika, że w 2011 roku dla tych grup było więcej ludzi najmłodszych(15 lat) niż najstarszych(85+)  
 \subsection{Mediana}
 
 \paragraph{Wzór ogólny}
@@ -41,7 +107,28 @@ x_{med} =
         \frac{1}{2} (x_{(\frac{k}{2})} + x_{(\frac{k+1}{2})}) \text{ dla k parzystych}
     \end{cases}
 \]
-
+Dla danych z 1978 roku:
+$\\$
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$x_{med}$ & 34 & 36 & 47 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dla danych z 2011 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$x_{med}$ & 36 & 42 & 62 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Mediana wieku dla wszystkich grup się zwiększyła co podobnie jak w przypadku średniej może sugerować starzenie się społęczeństwa. Dodatkowo znaczny wzrost mediany dla wyksztacenia podstawowego i średniego sugeruje, że młodzi ludzie coraz rzadziej kończą swoją edukacje na tych poziomach.
 \subsection{Kwartyle}
 \paragraph{Wzory ogólne}
 \paragraph{Q1}
@@ -79,37 +166,125 @@ Q_{3} =
 \[
 IQR = Q_{3} - Q_{1}
 \]
-
+$\\$
+Dla danych z 1978 roku:
+$\\$
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$Q1$ & 27 & 23 & 31 \\ \hline
+$Q2 (Mediana)$ & 34 & 36 & 47 \\ \hline
+$Q3$ & 46 & 44 & 59 \\ \hline
+$IQR$ & 19 & 21 & 28 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dla danych z 2011 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$Q1$ & 29 & 27 & 44 \\ \hline
+$Q2 (Mediana)$ & 36 & 42 & 62 \\ \hline
+$Q3$ & 51 & 56 & 75 \\ \hline
+$IQR$ & 22 & 29 & 31 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dane kwartylowe pokazują, że w latach 1978–2011 nastąpiło przesunięcie rozkładu wieku w górę we wszystkich grupach wykształcenia, co oznacza starzenie się populacji. Najsilniej zjawisko to dotyczy osób z wykształceniem podstawowym. Jednocześnie wzrosło zróżnicowanie wieku, szczególnie w grupie osób ze średnim wykształceniem, co sugeruje większą różnorodność pokoleniową w tej grupie.
 \subsection{Rozstęp}
 \paragraph{Wzór ogólny}
 \[
 R = x_{(k)} - x_{(1)}
 \]
-
+$\\$
+Dla danych z 1978 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$R$ & 80 676 & 289 666 & 2 454 581 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dla danych z 2011 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$R$ & 250 810 & 384 994 & 383 166 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+W latach 1978–2011 nastąpił silny spadek rozstępu w grupie osób z wykształceniem podstawowym oraz wzrost w grupach średniego i wyższego wykształcenia. Oznacza to zmniejszenie dominacji wykształcenia podstawowego oraz rozwój i zwiększenie liczebności grup o wyższym poziomie edukacji.
 \subsection{Wariancja i odchylenie standardowe}
 \paragraph{Wzory ogólne}
 \paragraph{Wariancja}
 \[
-\sigma^{2} = \frac{1}{k} \sum_{i=1}^{k} (x_{i} - \bar{x})^{2}
-\qquad
 s^{2} = \frac{1}{k-1} \sum_{i=1}^{k} (x_{i} - \bar{x})^{2}
 \]
 
 \paragraph{Odchylenie standardowe}
 \[
-\sigma = \sqrt{\sigma^{2}}
-\qquad
 s = \sqrt{s^{2}}
 \]
 
+$\\$
+Dla danych z 1978 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$s^2$ & 152.523 & 193.536 & 273.851 \\ \hline
+$s$ & 12.350 & 13.912 & 16.549 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dla danych z 2011 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$s^2$ & 222.487 & 300.502 & 455.993 \\ \hline
+$s$ & 14.916 & 17.335 & 21.354 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+W latach 1978–2011 wzrosły zarówno wariancje, jak i odchylenia standardowe we wszystkich grupach wykształcenia, co oznacza większe zróżnicowanie wieku. Największą zmienność obserwuje się w grupie podstawowej, a najmniejszą w grupie wyższej. Wskazuje to na większą różnorodność pokoleniową w społeczeństwie w 2011 roku.
 \subsection{Współczynnik zmienniczości}
 \paragraph{Wzory ogólne}
 \[
-CV = \frac{\sigma}{|\mu|} \cdot 100\%
-\qquad
 CV = \frac{s}{|\bar{x}|} \cdot 100\%
 \]
-
+$\\$
+Dla danych z 1978 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$CV$ & 33.010\% & 40.770\% & 37.290\% \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dla danych z 2011 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$CV$ & 41.433\% & 41.273\% & 34.442\% \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+W 2011 roku grupy (zwłaszcza wyższe i średnie) są bardziej zróżnicowane wiekowo niż w 1978.
 \subsection{Skośność i kurtoza}
 
 \paragraph{Wzory ogólne}
@@ -126,11 +301,208 @@ CV = \frac{s}{|\bar{x}|} \cdot 100\%
                          {\left(\frac{1}{k} \sum_{i=1}^{k} (x_{i} - \bar{x})^{2}\right)^{2}}-3
 \]
 
+$\\$
+Dla danych z 1978 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$\gamma_{1}$  & 0.488 & 1.524 & -0.662 \\ \hline
+$\gamma_{2}$ & 0.493 & 3.554 & 1.495 \\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Dla danych z 2011 roku:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+statystyka & wższe & średnie & podstawowe  \\ \hline
+$\gamma_{1}$ & 0.903 & 0.371 & -0.68 \\ \hline
+$\gamma_{2}$ & -0.054 & -0.873 & -0.633\\ \hline
+\end{tabular}
+\end{table}
+$\\$
+Między 1978 a 2011 rokiem rozkłady wieku stały się bardziej symetryczne (zwłaszcza dla wykształcenia średniego) i wyraźnie bardziej spłaszczone, co sugeruje większe rozproszenie wieku w populacji.
+\section{Wykres wszystkich statystyk dla obu zbiorów danych}
 
+\begin{table}[H]
+	\centering
+	\caption{Statystyki opisowe dla danych z 1978 roku}
+	\label{tab:1978}
+	\small
+	\begin{tabular}{lccc}
+		\toprule
+		\textbf{Miara} & \textbf{Wyższe} & \textbf{Średnie} & \textbf{Podstawowe} \\
+		\midrule
+		Średnia & 37.303 & 34.125 & 44.995 \\
+		Średnia ucinana & 35.774 & 32.423 & 40.845 \\
+		Mediana & 34 & 36 & 47 \\
+		Q1 & 27 & 23 & 31 \\
+		Q2 & 34 & 36 & 47 \\
+		Q3 & 46 & 44 & 59 \\
+		IQR & 19 & 21 & 28 \\
+		Rozstęp & 80.676 & 289.666 & 2454.581 \\
+		Wariancja & 152.523 & 193.536 & 273.851 \\
+		Odchylenie standardowe & 12.350 & 13.912 & 16.549 \\
+		Współczynnik zmienności [\%] & 33.010 & 40.770 & 37.290 \\
+		Skośność & 0.488 & 1.524 & -0.662 \\
+		Kurtoza & 0.493 & 3.554 & 1.495 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
-\section{Prezentacja rozkładów na wykresach}
+\begin{table}[H]
+	\centering
+	\caption{Statystyki opisowe dla danych z 2011 roku}
+	\label{tab:2011}
+	\small
+	\begin{tabular}{lccc}
+		\toprule
+		\textbf{Miara} & \textbf{Wyższe} & \textbf{Średnie} & \textbf{Podstawowe} \\
+		\midrule
+		Średnia & 40.828 & 43.204 & 57.713 \\
+		Średnia ucinana & 40.914 & 42.892 & 59.060 \\
+		Dominanta & 27 & 21 & 15 \\
+		Q1 & 29 & 27 & 44 \\
+		Q2 (Mediana) & 36 & 42 & 62 \\
+		Q3 & 51 & 56 & 75 \\
+		IQR & 22 & 29 & 31 \\
+		Rozstęp & 250810 & 384994 & 383166 \\
+		Odchylenie standardowe & 14.916 & 17.335 & 21.354 \\
+		Współczynnik zmienności [\%] & 41.433 & 41.273 & 34.442 \\
+		Skośność & 0.903 & 0.371 & -0.682 \\
+		Kurtoza & -0.054 & -0.873 & -0.633 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+W celu graficznego przedstawienia analizowanych danych wykorzystano wykresy liniowe, wykresy kwantyl--kwantyl (QQ-plot) oraz wykresy pudełkowe (boxplot). Pozwalają one na wizualną ocenę rozkładu danych, identyfikację obserwacji odstających, analizę zmienności oraz ocenę podobieństwa rozkładów pomiędzy badanymi latami.
+
+\subsection{Struktura wykształcenia względem wieku}
+
+W celu zobrazowania zmian w strukturze wykształcenia społeczeństwa przedstawiono rozkłady liczby osób według wieku dla trzech poziomów wykształcenia: podstawowego, średniego oraz wyższego, osobno dla roku 1978 oraz 2011.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{wykrespelny1978.png}
+	\caption{Liczba osób według wieku z podziałem na poziom wykształcenia w roku 1978}
+	\label{fig:wykres_1978}
+\end{figure}
+
+Na rysunku~\ref{fig:wykres_1978} widoczna jest dominacja osób z wykształceniem podstawowym niemal w całym analizowanym przekroju wieku. Szczególnie liczna jest populacja osób starszych posiadających wykształcenie podstawowe, co wskazuje na niższy poziom wykształcenia starszych pokoleń w analizowanym okresie. Udział osób z wykształceniem wyższym pozostaje stosunkowo niski, natomiast wykształcenie średnie osiąga największe wartości głównie wśród osób młodych i w średnim wieku.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{brave_ojM4trpkHG.png}
+	\caption{Liczba osób według wieku z podziałem na poziom wykształcenia w roku 2011}
+	\label{fig:wykres_2011}
+\end{figure}
+
+W roku 2011 obserwuje się wyraźną zmianę struktury wykształcenia względem roku 1978. Na drugim wykresie widoczny jest znaczący wzrost liczby osób z wykształceniem średnim oraz wyższym, szczególnie w grupach wieku produkcyjnego. Jednocześnie udział osób z wykształceniem podstawowym wyraźnie maleje w młodszych grupach wieku, natomiast koncentruje się głównie wśród osób starszych. Zjawisko to wskazuje na poprawę poziomu wykształcenia społeczeństwa oraz zwiększenie dostępności edukacji średniej i wyższej w kolejnych pokoleniach.
+
+Porównanie obu wykresów jednoznacznie wskazuje na istotną transformację struktury edukacyjnej społeczeństwa. W 1978 roku dominowało wykształcenie podstawowe, natomiast w 2011 roku znacznie większą rolę zaczęły odgrywać wykształcenie średnie i wyższe, szczególnie wśród młodszych i średnich grup wieku. Przez osobne uwzględnianie w 2011 ludzi w wieku 65 - 84, ogon wykresu znacznie zmalał.
+
+\subsection{Porównanie rozkładów pomiędzy rokiem 1978 a 2011 -- QQ-plot}
+
+Do porównania zgodności rozkładów danych pomiędzy analizowanymi latami zastosowano wykresy QQ-plot.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{qqplotpodstawowe.png}
+	\caption{QQ-plot dla osób z wykształceniem podstawowym}
+	\label{fig:qq_podstawowe}
+\end{figure}
+
+W przypadku wykształcenia podstawowego widoczne są największe odchylenia punktów od prostej referencyjnej, szczególnie dla wartości skrajnych. Oznacza to, że rozkład tej grupy uległ największym zmianom pomiędzy 1978 a 2011 rokiem. Potwierdza to wcześniejsze wnioski o silnym przesunięciu tej kategorii do starszych grup wieku.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{qqplotsrednie.png}
+	\caption{QQ-plot dla osób z wykształceniem średnim}
+	\label{fig:qq_srednie}
+\end{figure}
+
+Dla wykształcenia średniego obserwuje się lepsze dopasowanie punktów do linii odniesienia, choć nadal widoczne są umiarkowane odchylenia. Świadczy to o zachowaniu ogólnego kształtu rozkładu przy jednoczesnym przesunięciu jego parametrów położenia.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{qqplotwyzsze.png}
+	\caption{QQ-plot dla osób z wykształceniem wyższym}
+	\label{fig:qq_wyzsze}
+\end{figure}
+
+Największą zgodność rozkładów pomiędzy latami obserwuje się dla osób z wykształceniem wyższym. Punkty układają się blisko linii referencyjnej, co sugeruje względnie stabilny charakter zmian oraz podobieństwo rozkładu po odpowiednim przeskalowaniu danych.
+
+\subsection{Analiza zmienności -- BoxPloty}
+
+W celu wizualizacji rozproszenia danych, kwartylowego rozkładu obserwacji oraz identyfikacji wartości odstających wykorzystano wykresy pudełkowe.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{boxplotpodstawowe1978.png}
+	\caption{Wykres pudełkowy dla wykształcenia podstawowego}
+	\label{fig:box_podstawowe}
+\end{figure}
+
+Wykres pudełkowy dla wykształcenia podstawowego pokazuje największy rozrzut danych oraz obecność silnie odstających obserwacji. Szeroki rozstęp międzykwartylowy potwierdza wysoką zmienność tej grupy.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{boxplotsrednie1978.png}
+	\caption{Wykres pudełkowy dla wykształcenia średniego}
+	\label{fig:box_srednie}
+\end{figure}
+
+W przypadku wykształcenia średniego obserwuje się umiarkowane zróżnicowanie danych. Rozkład jest bardziej skoncentrowany wokół mediany, a liczba obserwacji odstających jest niewielka, co wskazuje na względną stabilność tej grupy.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{boxplotwyzsze1978.png}
+	\caption{Wykres pudełkowy dla wykształcenia wyższego}
+	\label{fig:box_wyzsze}
+\end{figure}
+
+Dla wykształcenia wyższego rozkład cechuje się najmniejszym zakresem zmienności oraz największą regularnością. Wąski rozstęp międzykwartylowy oraz niewielka liczba obserwacji odstających wskazują na większą jednorodność danych w tej grupie.
+
+Graficzna prezentacja danych potwierdza wnioski uzyskane z analizy miar statystyki opisowej. Największe zmiany strukturalne pomiędzy analizowanymi okresami zaszły w grupie osób z wykształceniem podstawowym, natomiast najbardziej stabilny charakter zmian obserwowany jest wśród osób z wykształceniem wyższym.
 
 \section{Podsumowanie}
+
+Przeprowadzona analiza porównawcza danych z lat 1978 oraz 2011 wykazała istotne zmiany w strukturze wieku osób należących do poszczególnych poziomów wykształcenia. Zaobserwowane różnice dotyczą zarówno przeciętnego wieku badanych grup, jak i stopnia zróżnicowania danych oraz kształtu analizowanych rozkładów.
+
+\subsection{Osoby z wykształceniem wyższym}
+
+W 1978 roku średni wiek osób z wykształceniem wyższym wynosił 37{,}30 roku, natomiast w 2011 roku wzrósł do 40{,}83 roku, co oznacza wzrost o około 3{,}5 roku. Mediana wieku zwiększyła się z 34 do 36 lat, co wskazuje na przesunięcie całego rozkładu ku starszym grupom wieku.
+
+Wartość współczynnika skośności wzrosła z 0{,}49 w 1978 roku do 0{,}90 w 2011 roku, co oznacza silniejszą asymetrię prawostronną rozkładu. W praktyce wskazuje to na koncentrację obserwacji wokół młodszych grup wieku przy jednoczesnym występowaniu większej liczby obserwacji w starszych grupach wiekowych. Współczynnik zmienności wzrósł z 33{,}01\% do 41{,}43\%, co świadczy o zwiększeniu zróżnicowania wieku w tej grupie.
+
+wskazuje to na rosnącą liczebność osób posiadających wyższe wykształcenie oraz zwiększenie dostępności edukacji wyższej.
+
+\subsection{Osoby z wykształceniem średnim}
+
+W przypadku osób z wykształceniem średnim zaobserwowano jeden z największych wzrostów przeciętnego wieku. Średnia wieku zwiększyła się z 34{,}12 roku w 1978 roku do 43{,}20 roku w 2011 roku, czyli o ponad 9 lat. Mediana wzrosła z 36 do 42 lat, natomiast trzeci kwartyl zwiększył się z 44 do 56 lat, co wskazuje na istotne przesunięcie struktury wieku ku starszym grupom.
+
+W 1978 roku rozkład tej grupy charakteryzował się wyraźną asymetrią prawostronną, czego potwierdzeniem jest współczynnik skośności równy 1{,}52. W 2011 roku wartość ta spadła do 0{,}37, co oznacza znaczne zmniejszenie asymetrii oraz bardziej równomierny rozkład wieku. Dodatkowo wartość kurtozy zmieniła się z 3{,}55 do $-0{,}87$, co wskazuje na przejście od rozkładu bardziej skoncentrowanego wokół średniej do rozkładu bardziej spłaszczonego.
+
+Otrzymane wyniki sugerują, że grupa osób z wykształceniem średnim uległa znacznemu starzeniu, a jednocześnie rozkład wieku stał się bardziej stabilny i zrównoważony.
+
+\subsection{Osoby z wykształceniem podstawowym}
+
+Największe zmiany zaobserwowano w grupie osób z wykształceniem podstawowym. Średni wiek wzrósł z 44{,}99 roku w 1978 roku do 57{,}71 roku w 2011 roku, czyli o prawie 13 lat. Mediana wieku zwiększyła się z 47 do 62 lat, co świadczy o bardzo silnym przesunięciu rozkładu ku starszym grupom wiekowym.
+
+Istotna zmiana nastąpiła również w kształcie rozkładu. W 1978 roku współczynnik skośności wynosił 0{,}66, co wskazywało na asymetrię prawostronną. W 2011 roku przyjął on wartość ujemną równą $-0{,}68$, co oznacza odwrócenie kierunku asymetrii i koncentrację obserwacji w starszych grupach wieku. Jednocześnie współczynnik zmienności zmniejszył się z 37{,}29\% do 34{,}44\%, co wskazuje na większe skupienie obserwacji wokół średniej.
+
+Uzyskane wyniki pokazują, że w 2011 roku wykształcenie podstawowe stało się cechą charakterystyczną przede wszystkim dla starszych pokoleń, podczas gdy w młodszych grupach wieku jego udział wyraźnie zmalał.
+
+\subsection{wnioski}
+
+Przeprowadzona analiza porównawcza wykazała wyraźne przemiany struktury edukacyjnej społeczeństwa pomiędzy rokiem 1978 a 2011. We wszystkich analizowanych grupach odnotowano wzrost przeciętnego wieku, jednak skala tych zmian była zróżnicowana. Największe przesunięcie ku starszym grupom wieku nastąpiło wśród osób z wykształceniem podstawowym oraz średnim, natomiast grupa osób z wykształceniem wyższym zachowała relatywnie młodszą strukturę wieku.
+
+Najbardziej znaczącą zmianą jakościową było przekształcenie grupy osób z wykształceniem podstawowym w populację silnie skoncentrowaną w starszych grupach wiekowych. Jednocześnie zwiększenie udziału osób z wykształceniem średnim i wyższym w młodszych grupach wieku wskazuje na wzrost dostępności edukacji oraz systematyczne podnoszenie poziomu wykształcenia społeczeństwa.
+
+Wyniki analizy statystycznej potwierdzają, że w analizowanym okresie nastąpiła istotna transformacja społeczna i edukacyjna, prowadząca do stopniowego ograniczania udziału osób z najniższym poziomem wykształcenia oraz wzrostu znaczenia wykształcenia średniego i wyższego w strukturze społecznej.
 
 
 \end{document}
